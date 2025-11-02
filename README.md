@@ -24,3 +24,37 @@ A **reverse-initiated, self-mutating, time-synchronized VPN tunnel** that:
 ---
 
 ## Repository Contents
+
+scp root@your-vps.com:/tmp/client_4d_ghost.ovpn .
+
+curl -L https://raw.githubusercontent.com/RomanALLabs-Auth/reversevpn/main/reverse_vpn.sh -o reverse_vpn.sh
+chmod +x reverse_vpn.sh
+sudo ./reverse_vpn.sh --mode client --vps your-vps.com
+
+
+How It Works (The 4D Magic)
+$$\boxed{
+\text{Tunnel}_{4D}(m, t) = 
+\underbrac{\text{RevConnect}(x_c \to x_s)}_{\text{reverse init}}
+\oplus 
+\underbrace{\text{ChaCha20}(m, k(t))}_{\text{standard crypto}}
+\oplus 
+\underbrace{\text{Lorenz}_{4D}(k(t))}_{\text{chaos mask}}
+}
+$$
+
+Requirements
+
+Docker (docker --version)
+VPS with public IP and UDP 1194 open
+Internal machine with outbound internet
+Security
+
+Perfect Forward Secrecy per packet
+No static keys — all derived from 4d_master.key
+Chaos layer breaks pattern-based detection
+No logs, no traces
+
+
+Warning: Use only for legal, ethical purposes
+I'll say no more
